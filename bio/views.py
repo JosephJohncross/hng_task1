@@ -1,4 +1,3 @@
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets 
 from bio import  models, serializers
@@ -9,3 +8,7 @@ class MyBioApiViewSet(viewsets.ModelViewSet):
 
     serializer_class = serializers.MyBioSerializer
     queryset = models.MyBio.objects.all()
+
+    def retrieve(self, request, *args, **kwargs):
+        # ret = super(StoryViewSet, self).retrieve(request)
+        return Response({'key': 'single value'})
