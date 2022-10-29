@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from ctypes import cast
 from pathlib import Path
 from decouple import config
-
+import dj_database_url
+import os
+import psycopg2
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -92,12 +93,12 @@ WSGI_APPLICATION = 'rest_api.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-    }
-}
+db_config = dj_database_url.config(default=config('DATABASE_URL'))
+db_config['ATOMIC_REQUESTS']=True
 
+DATABASES = {
+    'default': db_config,
+}
 
 
 # Password validation
