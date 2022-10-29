@@ -29,7 +29,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', '0.0.0.0', 'https://josephi-bio.herokuapp.com']
-
+CSRF_TRUSTED_ORIGINS = ["https://josephi-bio.herokuapp.com"]
 
 # Application definition
 
