@@ -54,7 +54,7 @@ def arithmetic_view(request, format='json'):
         elif operation_type.lower() == 'multiplication':
             return Response({
                 "slackUsername": "josephibochi",
-                "result": x - y,
+                "result": x * y,
                 "operation_type": 'multiplication'
             }, status=status.HTTP_200_OK)
         else:
