@@ -74,7 +74,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'rest_api.wsgi.application'
-
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
 
 
 

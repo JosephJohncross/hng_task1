@@ -30,8 +30,8 @@ class MyBioApiViewSet(viewsets.ModelViewSet):
                 response = {}
                 return Response(response, status.HTTP_404_NOT_FOUND)
 
-@api_view(['POST'])
-def arithmetic_view(request):
+@api_view(['GET','POST'])
+def arithmetic_view(request, format='json'):
     data = JSONParser().parse(request)
     serializer = serializers.ArithmeticSerializer(data=data)
     if serializer.is_valid():
@@ -44,18 +44,18 @@ def arithmetic_view(request):
                 "slackUsername": "josephibochi",
                 "result": x + y,
                 "operation_type": 'addition'
-            })
+            }, status=status.HTTP_200_OK)
         elif operation_type.lower() == 'subtraction':
             return Response({
                 "slackUsername": "josephibochi",
                 "result": x - y,
                 "operation_type": 'subtraction'
-            })
+            }, status=status.HTTP_200_OK)
         elif operation_type.lower() == 'multiplication':
             return Response({
                 "slackUsername": "josephibochi",
                 "result": x - y,
                 "operation_type": 'multiplication'
-            })
+            }, status=status.HTTP_200_OK)
         else:
-            raise ValueError("inappropriate operation_selection")
+            return Response("Invalid operation", status=status.HTTP_400_BAD_REQUEST)
